@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cronus-api
+spec:
+  selector:
+    matchLabels:
+      app: cronus-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cronus-api
+    spec:
+      containers:
+      - name: cronus-api
+        image: cronus-api
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8844

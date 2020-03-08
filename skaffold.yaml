@@ -1,0 +1,44 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+build:
+  artifacts:
+  - image: cronus-ui
+    context: services/frontend
+
+  - image: cronus-api
+    context: services/backend
+
+deploy:
+  kubectl:
+    manifests:
+      - 'kubernetes/frontend/*.yml'
+      - 'kubernetes/backend/*.yml'
+
+profiles:
+  - name: minikube-profile
+    activation:
+      - kubeContext: minikube
+    build:
+      artifacts:
+      - image: cronus-ui
+        context: services/frontend
+        docker:
+          buildArgs:
+            ENV: development
+        sync:
+          manual:
+          # Sync all the javascript files that are in the src folder
+          # with the container src folder
+          - src: 'services/frontend/src/**/*.js'
+            dest: .
+      - image: cronus-api
+        context: services/backend
+        docker:
+          buildArgs:
+            DEBUG: 1
+        sync:
+          manual:
+          # Sync all the python files that are in the src folder
+          # with the container src folder
+          - src: 'src/**/*.py'
+            dest: .
