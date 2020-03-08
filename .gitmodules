@@ -1,0 +1,6 @@
+[submodule "services/frontend"]
+	path = services/frontend
+	url = git@github.com:tomroffe/cronus-ui.git
+[submodule "services/backend"]
+	path = services/backend
+	url = git@github.com:tomroffe/cronus-api.git
