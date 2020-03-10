@@ -14,7 +14,9 @@ spec:
     spec:
       containers:
       - name: cronus-ui
-        image: cronus-ui
+        image: 625174228527.dkr.ecr.eu-west-1.amazonaws.com/cronus-ui:latest
         imagePullPolicy: IfNotPresent
+        imagePullSecrets:
+          - name: registry-creds-ecr
         ports:
         - containerPort: 8000
