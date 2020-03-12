@@ -8,11 +8,11 @@ build:
   - image: cronus-api
     context: services/backend
 
-deploy:
-  kubectl:
-    manifests:
-      - 'kubernetes/frontend/*.yml'
-      - 'kubernetes/backend/*.yml'
+# deploy:
+#   kubectl:
+#     manifests:
+#       - 'kubernetes/frontend/*.yml'
+#       - 'kubernetes/backend/*.yml'
 
 profiles:
   - name: minikube-profile
